@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'json'
 
-wheels = {:routes => [], :stop_schedules => []}
+wheels = {:timestamp => Time.new,:routes => [], :stop_schedules => []}
 doc = Nokogiri::HTML(open('http://bustracker.muni.org/InfoPoint/noscript.aspx'))
 wheels[:routes] = doc.css('.routeNameListEntry').map {|l| {:id => l['routeid'], :name => l.content}}
 wheels[:routes].each do |r|
